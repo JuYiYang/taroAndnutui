@@ -37,38 +37,34 @@
         </nut-swiper-item> </nut-swiper
     ></view>
   </view>
-  <view class="boxTitle">
+  <!-- <view class="boxTitle">
     <view>精选留言</view>
-  </view>
-  <nut-swipe v-for="item in 5">
-    <view class="artcicle">
-      <view class="userInfo">
-        <view class="left">
-          <nut-avatar
-            size="normal"
-            icon="https://c-ssl.dtstatic.com/uploads/blog/202203/25/20220325232426_17909.thumb.400_0.jpeg"
-          ></nut-avatar>
-          <text class="username">UserName</text>
-        </view>
-        <view class="right">
-          <text class="colorPrimary">查看更多</text>
-          <nut-icon name="right" size="14"></nut-icon>
-        </view>
-      </view>
-      <view class="content">
-        <text
-          >一个view里面，有很多文字，会自动分行显示。一个view里面，有很多文字，会自动分行显示。
-          一个view里面，有很多文字，会自动分行显示。
-          一个view里面，有很多文字，会自动分行显示......</text
-        >
-      </view>
-    </view>
-    <template #right>
-      <nut-button shape="square" style="height:100%" type="danger"
-        >不感兴趣</nut-button
+  </view> -->
+  <view class="main">
+    <template v-for="(item, index) in articleList" :key="index">
+      <view
+        class="main_box"
+        :class="{
+          dark: index % 2 == 0,
+        }"
       >
+        <view class="userInfo">
+          <nut-avatar
+            size="small"
+            icon="https://ts1.cn.mm.bing.net/th?id=OIP-C.kRklM9DmpC8zqSI4_Bq9mAHaHa&w=204&h=204&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
+          ></nut-avatar>
+          <text>userInfo</text>
+        </view>
+        <view class="articleContent">
+          新型农民工进京打工！新型农民工进京打工！
+          新型农民工进京打工！新型农民工进京打工！
+          新型农民工进京打工！新型农民工进京打工！ 新型农民工进京打工！
+        </view>
+        <view class="articleFooter">
+        </view>
+      </view>
     </template>
-  </nut-swipe>
+  </view>
 </template>
 
 <script>
@@ -84,18 +80,36 @@ export default {
     const searchValue = reactive("");
     // 图片列表
     const list = reactive([
-      "https://www.dootask.com/uploads/chat/202208/3170/4a92562e85facce5cf622f3c04c4795d.jpg_thumb.jpg",
+      "",
+      // "https://www.dootask.com/uploads/chat/202208/3170/4a92562e85facce5cf622f3c04c4795d.jpg_thumb.jpg",
     ]);
+    const articleList = reactive(
+      new Array(5).fill().map((v, i) => {
+        return {
+          name: "XXX" + i,
+          price: i,
+          category: Math.random() > 0.5 ? "蔬菜" : "水果",
+        };
+      })
+    );
     return {
       searchValue,
       list,
       menuStyle,
+      articleList,
     };
   },
 };
 </script>
 
 <style lang="scss">
+.dark {
+  background-color: #6e8bb9 !important;
+}
+.line {
+  background-color: #c3d9f8;
+}
+
 .index {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -152,62 +166,49 @@ export default {
   position: absolute;
   top: 0px;
 }
-.artcicle {
-  border-radius: 25rpx;
-  margin: 20rpx 0rpx;
-  padding-top: 10rpx;
-  padding-bottom: 15rpx;
-  width: 100%;
-  // height: 300rpx;
-  // background-image: linear-gradient(
-  //   direction,
-  //   #409eff,
-  //   #67c23a,
-  //   #e6a23c,
-  //   #f56c6c,
-  //   #909399
-  // );
-  background: -webkit-linear-gradient(
-    left,
-    #409eff,
-    #67c23a,
-    #e6a23c,
-    #f56c6c,
-    #909399
-  );
-  // background-color: #409eff;
-  opacity: 0.6;
-
-  // background-color: #67c23a;
-  .userInfo {
-    padding: 20rpx 10rpx;
-    padding-bottom: 0rpx;
-    padding-top: 0rpx;
-    width: 92%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .left,
-    .right {
-      height: 100%;
+.main {
+  max-width: 100%;
+  padding: 10rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  .main_box {
+    margin: 10rpx 0rpx;
+    width: 48%;
+    border-radius: 25rpx;
+    padding: 20rpx 0rpx;
+    box-sizing: border-box;
+    background-color: #c3d9f8;
+    .userInfo {
+      width: 100%;
+      height: 64rpx;
+      padding-left: 10rpx;
       display: flex;
+      justify-content: flex-start;
       align-items: center;
+      text {
+        font-weight: 600;
+        margin-left: 10rpx;
+        color: #ffffff;
+      }
     }
-    .right {
-      // width: 160rpx;
-      justify-content: space-between;
-      color: #409eff;
-    }
-    .username {
-      display: inline-block;
-      margin-left: 20rpx;
-      font-size: 28rpx;
+    .articleContent {
+      max-width: 100%;
+      padding: 10rpx;
+      color: #ffffff;
+      font-size: 26rpx;
     }
   }
-  .content {
-    padding: 10rpx;
-    text-indent: 90rpx;
-    font-size: 28rpx;
+}
+.articleFooter {
+  height: 64rpx;
+  padding: 10rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  .nut-icon{
+    margin-left: 20rpx;
   }
 }
 </style>
