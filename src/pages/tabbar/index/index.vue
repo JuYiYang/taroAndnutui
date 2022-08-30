@@ -1,12 +1,6 @@
 <template>
   <view class="index">
-    <view
-      class="searchBar"
-      :style="{
-        top: `${menuStyle.top * 2}rpx`,
-        height: `${menuStyle.height * 2}rpx`,
-      }"
-    >
+    <view class="searchBar">
       <nut-searchbar
         v-model="searchValue"
         placeholder="快来搜索关于你的留言吧！"
@@ -16,12 +10,7 @@
         </template>
       </nut-searchbar>
     </view>
-    <view
-      class="swiper"
-      :style="{
-        marginTop: `${menuStyle.top * 2 + menuStyle.height * 2 + 10}rpx`,
-      }"
-    >
+    <view class="swiper">
       <nut-swiper
         :init-page="list.length"
         :pagination-visible="true"
@@ -33,21 +22,16 @@
           :key="item"
           @click="showPreview(index)"
         >
-          <img :src="item" alt="" />
+          <image :src="item" />
         </nut-swiper-item> </nut-swiper
     ></view>
   </view>
-  <!-- <view class="boxTitle">
+  <view class="boxTitle">
     <view>精选留言</view>
-  </view> -->
+  </view>
   <view class="main">
     <template v-for="(item, index) in articleList" :key="index">
-      <view
-        class="main_box"
-        :class="{
-          dark: index % 2 == 0,
-        }"
-      >
+      <view class="main_box" :class="{ dark: bgcCom(index) }">
         <view class="userInfo">
           <nut-avatar
             size="small"
@@ -58,9 +42,11 @@
         <view class="articleContent">
           新型农民工进京打工！新型农民工进京打工！
           新型农民工进京打工！新型农民工进京打工！
-          新型农民工进京打工！新型农民工进京打工！ 新型农民工进京打工！
         </view>
         <view class="articleFooter">
+          <i class="iconfont iconfont icon-clearfnicon"></i>
+          <i class="iconfont icon-clearfnpinglun"></i>
+          <i class="iconfont icon-clearfnfenxiang"></i>
         </view>
       </view>
     </template>
@@ -69,22 +55,38 @@
 
 <script>
 import as from "./index.config";
-import { reactive, toRefs } from "vue";
+import { reactive, toRefs, computed } from "vue";
 import { pageInfoStore } from "../../../store/index";
 export default {
   name: "Index",
   setup() {
     // 拿到页面胶囊信息
     const { menuStyle } = pageInfoStore();
+    // 设置css变量
+    const styleRsult = computed(() => {
+      const searchBarTop = menuStyle.top * 2;
+      const searchBarHeight = menuStyle.height * 2;
+      const swiperMarginTop = searchBarTop + searchBarHeight + 10;
+      return {
+        searchBarTop: searchBarTop + "rpx",
+        searchBarHeight: searchBarHeight + "rpx",
+        swiperMarginTop: swiperMarginTop + "rpx",
+      };
+    });
+    // 设置 背景色
+    const bgcCom = (index) => {
+      let stepOne = index % 4 % 3; // 藏龙给我写的高级算法 (index % 4 ^ 3) % 3
+      return stepOne;
+    };
     // 搜索值
     const searchValue = reactive("");
     // 图片列表
     const list = reactive([
-      "",
-      // "https://www.dootask.com/uploads/chat/202208/3170/4a92562e85facce5cf622f3c04c4795d.jpg_thumb.jpg",
+      "https://www.dootask.com/uploads/chat/202208/3170/4a92562e85facce5cf622f3c04c4795d.jpg_thumb.jpg",
     ]);
+    // 假文章
     const articleList = reactive(
-      new Array(5).fill().map((v, i) => {
+      new Array(50).fill().map((v, i) => {
         return {
           name: "XXX" + i,
           price: i,
@@ -92,11 +94,18 @@ export default {
         };
       })
     );
+    // 页面滚动事件
+    const onPageScrol = (e) => {
+      console.log(e);
+    }
     return {
+      onPageScrol,
       searchValue,
       list,
       menuStyle,
       articleList,
+      styleRsult,
+      bgcCom,
     };
   },
 };
@@ -121,9 +130,9 @@ export default {
   justify-content: center;
   align-items: center;
   z-index: 999;
-  height: 50rpx;
+  height: v-bind("styleRsult.searchBarHeight");
   position: fixed;
-  top: 0rpx;
+  top: v-bind("styleRsult.searchBarTop");
   left: 0rpx;
   .nut-searchbar {
     background-color: transparent;
@@ -135,10 +144,16 @@ export default {
 }
 .swiper {
   padding: 0rpx 20rpx;
+  margin-top: v-bind("styleRsult.swiperMarginTop");
+  margin-bottom: 20rpx;
+}
+.nut-swiper {
+  border-radius: 35rpx;
 }
 .nut-swiper-item {
-  img {
-    width: 100%;
+  image {
+    min-width: 100%;
+    min-height: 100%;
   }
 }
 .boxTitle {
@@ -156,9 +171,6 @@ export default {
     font-size: 32rpx;
     color: #ffffff;
   }
-}
-.nut-swiper {
-  border-radius: 35rpx;
 }
 .nut-imagepreview {
   width: 100%;
@@ -202,12 +214,15 @@ export default {
   }
 }
 .articleFooter {
-  height: 64rpx;
+  // height: 64rpx;
   padding: 10rpx;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  .nut-icon{
+  i {
+    margin-right: 20rpx;
+  }
+  .nut-icon {
     margin-left: 20rpx;
   }
 }

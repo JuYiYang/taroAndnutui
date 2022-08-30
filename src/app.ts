@@ -1,9 +1,9 @@
 import { createApp } from "vue";
 import Uilist from "./nutuiConfig";;
 import Taro from "@tarojs/taro";
+import './app.less'
 import { createPinia } from "pinia";
 import { pageInfoStore } from "./store/index";
-import "./public/styles/coolqiBike.css"
 const App = createApp({
   onShow(options) {
     const pageInfonewStore = pageInfoStore();

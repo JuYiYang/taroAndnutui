@@ -1,0 +1,30 @@
+{
+  "id": "3619656",
+  "name": "clearFn",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-clearfn",
+  "description": "clearFn",
+  "glyphs": [
+    {
+      "icon_id": "777843",
+      "name": "赞",
+      "font_class": "icon",
+      "unicode": "e651",
+      "unicode_decimal": 58961
+    },
+    {
+      "icon_id": "9568053",
+      "name": "评论",
+      "font_class": "pinglun",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    },
+    {
+      "icon_id": "17605473",
+      "name": "分享",
+      "font_class": "fenxiang",
+      "unicode": "e816",
+      "unicode_decimal": 59414
+    }
+  ]
+}

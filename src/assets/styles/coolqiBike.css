@@ -1,0 +1,18 @@
+/* @font-face {
+  font-family: "coolFont";
+  src: 
+  url("./fontSize/vJy8oLOlVKKIdV_Pyh5Bs.woff") format("woff")
+  url("./fontSize/vJy8oLOlVKKIdV_Pyh5Bs.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+} */
+/* CDN 服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
+@font-face {
+  font-family: "coolFont";
+  font-weight: 400;
+  src: url("//at.alicdn.com/wf/webfont/nblVEXCQUxs4/ojSGzO4MaQrCb_YQ65QBR.woff2")
+      format("woff2"),
+    url("//at.alicdn.com/wf/webfont/nblVEXCQUxs4/rNznSpH6aMp_KHRL8v_wN.woff")
+      format("woff");
+  font-display: swap;
+}
