@@ -20,3 +20,7 @@ declare namespace NodeJS {
 declare module '@tarojs/components' {
   export * from '@tarojs/components/types/index.vue3'
 }
+
+declare namespace wx {
+  export const login: any;
+}

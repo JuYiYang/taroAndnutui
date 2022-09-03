@@ -11,6 +11,7 @@ import {
   WaterMark,
   Swipe,
   SearchBar,
+  Input
 } from "@nutui/nutui-taro";
 
 type listArray = any;
@@ -28,6 +29,7 @@ const list: listArray = [
   WaterMark,
   Swipe,
   SearchBar,
+  Input
 ];
 
 export default list;

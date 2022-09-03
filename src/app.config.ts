@@ -3,6 +3,7 @@ export default defineAppConfig({
     "pages/tabbar/index/index",
     "pages/tabbar/release/release",
     "pages/tabbar/user/user",
+    "pages/login/login/login"
   ],
   window: {
     backgroundTextStyle: "light",

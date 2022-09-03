@@ -6,6 +6,27 @@
   "description": "clearFn",
   "glyphs": [
     {
+      "icon_id": "29391760",
+      "name": "clear",
+      "font_class": "clear",
+      "unicode": "e955",
+      "unicode_decimal": 59733
+    },
+    {
+      "icon_id": "4354835",
+      "name": "闭眼睛",
+      "font_class": "biyanjing",
+      "unicode": "e901",
+      "unicode_decimal": 59649
+    },
+    {
+      "icon_id": "8288891",
+      "name": "眼睛",
+      "font_class": "yanjing",
+      "unicode": "e857",
+      "unicode_decimal": 59479
+    },
+    {
       "icon_id": "777843",
       "name": "赞",
       "font_class": "icon",

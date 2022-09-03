@@ -24,7 +24,6 @@
                 },
             ]
         });
-
         const showFn = () => {
             resData.showPreview = true;
         }
